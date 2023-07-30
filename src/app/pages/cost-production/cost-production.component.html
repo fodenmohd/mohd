@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header">
+        <form #myForm="ngForm" (ngSubmit)="submit()">
+            <div class="d-flex justify-content-between">
+                <!-- Format the date using the formatDate() function -->
+<input type="date" class="form-control" placeholder="" name="date" [(ngModel)]="Item_model.date" required>
+
+              <input type="number" class="form-control" placeholder="enter no of packet /25kg" name="qty" [(ngModel)]="Item_model.quantity" required>
+              <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Calculate</button>
+              <button class="btn btn-success" (click)="save()" [disabled]="!myForm.valid">Save</button>
+            </div>
+          </form>
+          
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sn</th>
+                    <th>Item name</th>
+                    <th>Item Description</th>
+                    <th>Price</th>
+                    <th>Total ea</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items_data">
+                    <td>{{item.item_Id}}</td>
+                    <td>{{item.item_Name}}</td>
+                    <th>{{item.item_Description}}</th>
+                    <td>{{item.item_price}}</td>
+                    <td>{{ item.total | number: '1.2-2' }}</td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td>{{ grandTotal | number: '1.2-2' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Total Cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cost of cost_data">
+                    <td>{{formatDate(cost.date)}}</td>
+                    <td>{{cost.quantity}}</td>
+                    <th>{{cost.total | number: '1.2-2'}}</th>
+                    <td><button class="btn btn-danger" (click)="delete(cost.cost_Id)">Delete</button></td>
+
+                    
+                </tr>
+                <!-- <tr>
+                    <td colspan="4">Total</td>
+                    <td>{{ grandTotal | number: '1.2-2' }}</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

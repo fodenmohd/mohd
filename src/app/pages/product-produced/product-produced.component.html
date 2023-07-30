@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-footer text-center">
+        <h2 ><b>Product Produce Calculate</b></h2>
+        <hr>
+    </div>
+    <div class="card-header">
+        <form #myForm="ngForm" (ngSubmit)="submit()">
+      
+            <div class="d-flex justify-content-between">
+               
+              <select name="selectedDate" class="form-control" [(ngModel)]="produce_model.date">
+                <option *ngFor="let x of cost_data" [value]="x.date">{{ formatDate(x.date) }}</option>
+              </select>
+          
+              <select name="selectedQuantity" class="form-control" [(ngModel)]="produce_model.quantity">
+                <option *ngFor="let x of cost_data" [value]="x.quantity">{{ x.quantity }}</option>
+              </select>
+          
+              <!-- <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Calculate</button> -->
+              <button class="btn btn-success" (click)="save()" [disabled]="!myForm.valid">Save</button>
+            </div>
+          </form>
+          
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Sn</th>
+                <th>Products name</th>
+                <th>Item Description</th>
+                <th>AVG/25</th>
+                <th>Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of product_data; let i = index;">
+                <td>{{ i + 1 }}</td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.avg }}</td>
+                <td>{{ product.product_price }}</td>
+                <td>{{ calculateTotal(product.avg, product.product_price) | number: '1.2-2'}}</td>
+              </tr>
+              <tr>
+                <td colspan="5">Total</td>
+                <td>{{ calculateGrandTotal() | number: '1.2-2' }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Total Produced Value</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of produced_data">
+                  
+                    <td>{{data.date}}</td>
+                    <td>{{data.quantity}}</td>
+                    <td>{{data.total_Amount}}</td>
+                    <td><button class="btn btn-danger" (click)="delete(data.produce_Id)">Delete</button></td>
+                </tr>
+                <!-- <tr>
+                    <td colspan="4">Total</td>
+                    <td>{{ grandTotal | number: '1.2-2' }}</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

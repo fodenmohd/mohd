@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+        <form [formGroup]="formData" >
+      
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="inputPassword6" class="col-form-label">Start Date</label>
+                </div>
+                <div class="col-auto">
+                  <input type="date" formControlName="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">End date</label>
+                  </div>
+                  <div class="col-auto">
+                    <input type="date" formControlName="endDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                  </div>
+                  <div class="col-auto">
+                    <button mat-raised-button color="primary" (click)="getDataByDate()">Filter</button>
+                    <button mat-raised-button (click)="printTable()" color="blue">Print</button>
+              
+                  </div>
+              </div>
+              
+          </form>
+          
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="htmlData">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                   <th>Quantity</th>
+                    <th>Total cost</th>
+                    <th>Total unit Produced Value</th>
+                    <th>Profit/lose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of costandprod_data">
+                    <td>{{data.date}}</td>
+                    <td>{{data.quantity}}</td>
+                    <td>{{data.total  | number: '1.2-2'}}</td>
+                    <td>{{data.total_amount  | number: '1.2-2'}}</td>
+                    <td>{{ calculateDifference(data.total, data.total_amount)  | number: '1.2-2' }}</td>
+                </tr>
+            </tbody>
+    </table>
+    </div>
+</div>
