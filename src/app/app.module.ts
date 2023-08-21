@@ -13,14 +13,18 @@ import { AssideComponent } from './default/asside/asside.component';
 import { DarshbourdComponent } from './pages/darshbourd/darshbourd.component';
 import { ItemComponent } from './pages/item/item.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { CostProductionComponent } from './pages/cost-production/cost-production.component';
 import { ReportsComponent } from './pages/reports/reports.component';
-import { ProductProducedComponent } from './pages/product-produced/product-produced.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { DatePipe } from '@angular/common'; // Import the DatePipe
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
+import { LoginComponentComponent } from './pages/login/login-component/login-component.component';
+import { UpdateProductComponent } from './pages/update-product/update-product.component';
+import { UpdateItemComponent } from './pages/update-item/update-item.component';
+import { ProductProducedComponent } from './pages/product-produced/product-produced.component';
+import { CostProductionComponent } from './pages/cost-production/cost-production.component';
+// import { DialogComponent } from './dialog/dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,10 @@ import {MatButtonModule} from '@angular/material/button';
     ProductsComponent,
     CostProductionComponent,
     ReportsComponent,
-    ProductProducedComponent
+    ProductProducedComponent,
+    LoginComponentComponent,
+    UpdateProductComponent,
+    UpdateItemComponent,
     
 
 
@@ -43,7 +50,8 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,MatFormFieldModule,MatSelectModule,DatePipe,CommonModule ,
-    MatButtonModule
+    MatButtonModule,
+    
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

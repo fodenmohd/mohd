@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ItemService } from 'src/app/sevices/Item/item.service';
 import { CostcalculationServicesService } from 'src/app/sevices/costcalculation-services.service';
-import { ItemService } from 'src/app/sevices/item.service';
+import Swal from 'sweetalert2';
 export class Item{
   quantity:any
   date: any = null
@@ -31,7 +32,7 @@ export class CostProductionComponent{
 
 
   getAllDataByDate(){
-    this.items.getUser_Info().subscribe(
+    this.items.getItem().subscribe(
       (respo) => {
         this.items_data = respo;
         console.log(this.items_data);
@@ -44,7 +45,7 @@ export class CostProductionComponent{
   }
 
   getAll() {
-    this.items.getUser_Info().subscribe(
+    this.items.getItem().subscribe(
       (respo) => {
         this.items_data = respo;
         console.log(this.items_data);
@@ -113,10 +114,56 @@ delete(data:any){
     this.getAllCost()
   })
 }
+futa(data:any) {
+  // Store the outer this context
+  const outerThis = this;
+
+
+
+
+  // Show a confirmation dialog before deleting
+  Swal.fire({
+    title: 'Confirm',
+    text: 'Are you sure you want to delete this item?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel'
+  }).then(result => {
+    if (result.isConfirmed) {
+      // Use the stored outer this context
+      outerThis.cost_services.deletecost(data).subscribe(
+        response => {
+          console.log(response);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Product deleted successfully.',
+            icon: 'success'
+          });
+          this.getAllCost();
+          
+        },
+        error => {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete Product.',
+            icon: 'error'
+          });
+        }
+      );
+    }
+  });
+
+
+}
+
+
 formatDate(date: Date | string | undefined): string {
   if (date) {
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }
   return ''; // Return an empty string for undefined or null date
 }
+
+
 }

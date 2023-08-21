@@ -1,14 +1,20 @@
 <div class="card">
     <div class="card-header">
         <div class="d-flex justify-content-between">
-            <h2>Items Table</h2>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add item</button>
+            <h2>Items overview</h2>
+            <!-- <button  class="btn btn-info" mat-raised-button (click)="printTable()" color="blue">Print</button> -->
+            <button mat-raised-button color="primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add item</button>
+            <button mat-raised-button color="black" (click)="printTable()" color="blue">Print</button>
+
         </div>
     </div>
     
     <div class="card-body">
-        <table class="table table-bordered">
+        <table class="table table-bordered"  id="htmlData">
             <thead>
+                <th colspan="5">
+                    <h3 class="text-center"> <b>Up to Date Items Overview</b></h3>
+                </th>
                 <tr>
                     <th>Sn</th>
                     <th>Item name</th>
@@ -23,7 +29,8 @@
                     <td>{{items.item_Name}}</td>
                     <td>{{items.item_Description}}</td>
                     <td>{{items.item_price}}</td>
-                    <td><button class="btn btn-primary">Update</button><button class="btn btn-danger" (click)="futa(items.item_Id)">Delete</button></td>
+                    <td><button mat-raised-button color="primary" (click)="updateItem(items.item_Id)">Update</button>
+                        <button mat-raised-button color="accent" (click)="futa(items.item_Id)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -39,32 +46,32 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Item Form</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form [formGroup]="form">
+        <form #myForm="ngForm" [formGroup]="form">   
             <div class="modal-body">
                 <div class="row">
                   <div class="col">
                       <div class="form-group">
-                          <label>Item name</label>
-                          <input type="text" class="form-control" formControlName="item_Name"/>
+                          <label>Item name</label >
+                          <input type="text" class="form-control" formControlName="item_Name"required />
                       </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                           <label>Item Description</label>
-                          <input type="text" class="form-control" formControlName="item_Description"/>
+                          <input type="text" class="form-control" formControlName="item_Description"required />
                       </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                           <label>Price</label>
-                          <input type="text" class="form-control" formControlName="item_price"/>
+                          <input type="text" class="form-control" formControlName="item_price" required />
                       </div>
                   </div>
                 </div>
               </div>
         </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()">submit</button>
+          <button [disabled]="myForm.invalid" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()">submit</button>
         </div>
       </div>
     </div>

@@ -1,1 +1,32 @@
-<p>darshbourd works!</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card card-custom">
+        <div class="card-body">
+          <h5 class="card-title"><b>Discover Our Item</b></h5>
+          <a [routerLink]="['/home/items']" class="btn btn-custom"><b>View Items</b></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card card-custom">
+        <div class="card-body">
+          <h5 class="card-title"> <b>Discover Our Product</b></h5>
+          <a [routerLink]="['/home/product']" class="btn btn-custom"><b>View Product</b></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card card-custom">
+        <div class="card-body">
+          <h5 class="card-title"><b>Discover Our Report</b></h5>
+          <a [routerLink]="['/home/report']" class="btn btn-custom"><b>View Report</b></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add similar card structures for product and report -->
+  </div>
+</div>

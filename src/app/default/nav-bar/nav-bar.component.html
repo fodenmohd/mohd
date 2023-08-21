@@ -13,25 +13,28 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/home/product-item']">Product Item</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/home/items']">Item</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/items']">Item</a>
+                <a class="nav-link" [routerLink]="['/home/product']">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/product']">Products</a>
+                <a class="nav-link" [routerLink] = "['/home/cost_of_product']">Cost Calculation</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/cost_of_product']">Cost Calculation</a>
+                <a class="nav-link" [routerLink]="['/home/product_produce']">Product Produce</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/product_produce']">Product Produce</a>
+                <a class="nav-link" [routerLink]="['/home/report']">Report</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/report']">Report</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['']">Logout</a>
+                <a class="nav-link" (click)="logout()">Logout</a>
               </li>
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

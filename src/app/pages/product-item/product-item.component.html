@@ -1,0 +1,103 @@
+<div class="card">
+    <div class="card-footer text-center">
+        <h2><b>Product List</b></h2>
+        <hr>
+    </div>
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h5>List of Products</h5>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Product
+                Item</button>
+            <!-- <button class="btn btn-primary" (click)="printTable()" color="blue">Print</button> -->
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="htmlData">
+            <thead>
+                <tr>
+                    <th>Sn</th>
+                    <th>Products name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let products of product_item, let i = index;">
+                    <td>{{i + 1}}</td>
+                    <td>{{products.product_name}}</td>
+                    <td>{{products.price}}</td>
+                    <td>
+                        <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdro"  (click)="openUpdateModal(products)" >Update</button>
+                        <button class="btn btn-danger" (click)="delete(products.product_Id)">Delete</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Product Item Form</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form  [formGroup]="form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" class="form-control" formControlName="product_name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" formControlName="price" />
+                    </div>
+                </div>
+        </form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()">submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="staticBackdro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Product Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+            <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                          <label> name</label>
+                          <input type="text" class="form-control" formControlName="product_name"/>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label>Product Desc</label>
+                          <input type="text" class="form-control" formControlName="description"/>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label>Price</label>
+                          <input type="text" class="form-control" formControlName="product_price"/>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div> -->

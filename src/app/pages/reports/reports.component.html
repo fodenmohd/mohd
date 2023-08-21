@@ -1,50 +1,55 @@
 <div class="card">
+    <div class="card-footer text-center">
+        <h2><b>Performance Overview</b></h2>
+        <hr>
+    </div>
     <div class="card-header">
-        <form [formGroup]="formData" >
-      
+        <form [formGroup]="formData">
             <div class="row g-3 align-items-center">
                 <div class="col-auto">
-                  <label for="inputPassword6" class="col-form-label">Start Date</label>
+                    <label for="startDate" class="col-form-label">Start Date</label>
                 </div>
                 <div class="col-auto">
-                  <input type="date" formControlName="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="date" formControlName="startDate" id="startDate" class="form-control" required>
                 </div>
                 <div class="col-auto">
-                    <label for="inputPassword6" class="col-form-label">End date</label>
-                  </div>
-                  <div class="col-auto">
-                    <input type="date" formControlName="endDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                  </div>
-                  <div class="col-auto">
+                    <label for="endDate" class="col-form-label">End Date</label>
+                </div>
+                <div class="col-auto">
+                    <input type="date" formControlName="endDate" id="endDate" class="form-control" required>
+                </div>
+                <div class="col-auto">
                     <button mat-raised-button color="primary" (click)="getDataByDate()">Filter</button>
                     <button mat-raised-button (click)="printTable()" color="blue">Print</button>
-              
-                  </div>
-              </div>
-              
-          </form>
-          
+                </div>
+            </div>
+        </form>
     </div>
     <div class="card-body">
         <table class="table table-bordered" id="htmlData">
             <thead>
                 <tr>
+                    <th colspan="5">
+                        <h3 class="text-center"> <b>Report Of Date</b></h3>
+                    </th>
+                </tr>
+                <tr>
                     <th>Date</th>
-                   <th>Quantity</th>
+                    <th>Quantity</th>
                     <th>Total cost</th>
                     <th>Total unit Produced Value</th>
-                    <th>Profit/lose</th>
+                    <th>Profit/Loss</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let data of costandprod_data">
-                    <td>{{data.date}}</td>
-                    <td>{{data.quantity}}</td>
-                    <td>{{data.total  | number: '1.2-2'}}</td>
-                    <td>{{data.total_amount  | number: '1.2-2'}}</td>
-                    <td>{{ calculateDifference(data.total, data.total_amount)  | number: '1.2-2' }}</td>
+                    <td>{{ formatDate(data.date) }}</td>
+                    <td>{{ data.quantity }}</td>
+                    <td>{{ data.total | number: '1.2-2' }}</td>
+                    <td>{{ data.total_amount | number: '1.2-2' }}</td>
+                    <td>{{ calculateDifference(data.total, data.total_amount) | number: '1.2-2' }}</td>
                 </tr>
             </tbody>
-    </table>
+        </table>
     </div>
 </div>

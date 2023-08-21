@@ -1,4 +1,8 @@
 <div class="card">
+    <div class="card-footer text-center">
+        <h2 ><b>Cost Evaluation</b></h2>
+        <hr>
+    </div>
     <div class="card-header">
         <form #myForm="ngForm" (ngSubmit)="submit()">
             <div class="d-flex justify-content-between">
@@ -7,7 +11,7 @@
 
               <input type="number" class="form-control" placeholder="enter no of packet /25kg" name="qty" [(ngModel)]="Item_model.quantity" required>
               <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Calculate</button>
-              <button class="btn btn-success" (click)="save()" [disabled]="!myForm.valid">Save</button>
+              <button mat-raised-button color="primary" (click)="save()" [disabled]="!myForm.valid">Save</button>
             </div>
           </form>
           
@@ -55,7 +59,7 @@
                     <td>{{formatDate(cost.date)}}</td>
                     <td>{{cost.quantity}}</td>
                     <th>{{cost.total | number: '1.2-2'}}</th>
-                    <td><button class="btn btn-danger" (click)="delete(cost.cost_Id)">Delete</button></td>
+                    <td><button mat-raised-button color="accent" (click)="futa(cost.cost_Id)">Delete</button></td>
 
                     
                 </tr>

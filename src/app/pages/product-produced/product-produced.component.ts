@@ -1,10 +1,14 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
+import { ItemService } from 'src/app/sevices/Item/item.service';
+import { ProductService } from 'src/app/sevices/Product/product.service';
 import { CostcalculationServicesService } from 'src/app/sevices/costcalculation-services.service';
-import { ItemService } from 'src/app/sevices/item.service';
 import { ProducedServicesService } from 'src/app/sevices/produced-services.service';
-import { ProductService } from 'src/app/sevices/product.service';
+import Swal from 'sweetalert2';
+
+
+
 export class produce{
 quantity:any = null
 date:any = null
@@ -33,14 +37,12 @@ this.getAllProduct()
 this.getAllCost()
 this.getAllProduced()
 }
-product_data:any
+product_data:any;
 getAllProduct(){
-  return this.product_services.getProduct().subscribe(
-    respo=>{
-      this.product_data = respo
-      console.log(this.product_data)
-    }
-  )
+  return this.product_services.getCurrentProduct().subscribe((result:any)=>{
+    console.log(result);
+    this.product_data = result;
+  });
 }
 
 getprodbyId(id:any){
@@ -59,6 +61,7 @@ getAllCost(){
   }
   )
 }
+
 calculateTotal(avg: number, price: number): number {
   if (this.produce_model.date && this.produce_model.quantity) {
     const total = avg * price * parseFloat(this.produce_model.quantity);
@@ -95,6 +98,7 @@ save(){
 
 
 
+
 saveProduced(data:any){
   return this.produced_services.createProduct(data).subscribe(respo=>{
     console.log(data)
@@ -102,6 +106,10 @@ saveProduced(data:any){
     this.myForm.resetForm(); 
   })
 }
+
+
+
+
 produced_data:any
 getAllProduced(){
   return this.produced_services.getProduct().subscribe(respo=>{
@@ -123,4 +131,51 @@ delete(data:any){
     }
   )
 }
+
+
+futa(data:any) {
+  // Store the outer this context
+  const outerThis = this;
+
+
+
+
+  // Show a confirmation dialog before deleting
+  Swal.fire({
+    title: 'Confirm',
+    text: 'Are you sure you want to delete this item?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel'
+  }).then(result => {
+    if (result.isConfirmed) {
+      // Use the stored outer this context
+      outerThis.produced_services.deleteProduct(data).subscribe(
+        response => {
+          console.log(response);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Product deleted successfully.',
+            icon: 'success'
+          });
+          this.getAllProduced();
+          
+        },
+        error => {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to delete Product.',
+            icon: 'error'
+          });
+        }
+      );
+    }
+  });
+
+
+}
+  getAll() {
+    throw new Error('Method not implemented.');
+  }
 }

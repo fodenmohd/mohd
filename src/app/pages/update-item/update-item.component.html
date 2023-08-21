@@ -1,0 +1,28 @@
+<form (ngSubmit)="updateItem()">   
+    
+        <div class="card-body">
+          <div class="col">
+              <div class="form-group">
+                  <label>Item name</label >
+                  <input type="text" class="form-control" name="item_Name" [(ngModel)]="item.item_Name" required />
+              </div>
+          </div>
+          <div class="col">
+              <div class="form-group">
+                  <label>Item Description</label>
+                  <input type="text" class="form-control" name="item_Description" [(ngModel)]="item.item_Description" required />
+              </div>
+          </div>
+          <div class="col">
+              <div class="form-group">
+                  <label>Price</label>
+                  <input type="text" class="form-control" name="item_price" [(ngModel)]="item.item_price" required />
+              </div>
+          </div>
+          <br>
+          <div class="container">
+            <button type="submit" class="btn btn-success">Update</button>
+          </div>
+        </div>
+     
+</form>
